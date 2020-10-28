@@ -28,22 +28,16 @@ let chirps = [
   },
 ];
 
-const chirpsLog = JSON.parse(chirps);
+let writePath = path.join(__dirname, "../chirps.json");
 
-let writePath =path.join(__dirname, "../chirps.json");
-chirps=JSON.stringify(chirps)
-fs.writeFile (writePath, JSON.stringify(chirps),()=>{
-    fs.readFile(writePath,err,data)=> {
-        if(err){
-            console.log(err)
-        }else {
-            console.log(data)
-        }
+chirps = JSON.stringify(chirps);
+
+fs.writeFile(writePath, JSON.stringify(chirps), () => {
+  fs.readFile(writePath, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(JSON.parse(data));
     }
+  });
 });
-
-// fs.writeFile("./chirps.json", chirpsLog, () => console.log("logged"));
-// fs.readFile(".chirps.json", (err, log) => {
-//   if (err) console.log(err);
-//   console.log(JSON.parse(log));
-// });
